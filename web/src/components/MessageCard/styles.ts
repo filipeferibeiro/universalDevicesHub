@@ -1,14 +1,25 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    flex: 1;
     display: flex;
     flex-direction: column;
 
     background: #25292D;
-    box-shadow: 16px 16px 39px 3px rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 16px;
+`;
+
+export const ButtonsContainer = styled.div`
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+
+    @media (min-width: 800px) {
+        flex: 1;
+        justify-content: flex-end;
+    }
 `;
 
 export const Header = styled.header`

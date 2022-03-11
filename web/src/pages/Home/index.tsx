@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import MessageCard from '../../components/MessageCard';
 import { FiPaperclip, FiSend, FiX } from 'react-icons/fi';
 
-import { CardsContainer, Container, Input, InputContainer } from './styles';
+import { ActionsContainer, CardsContainer, Container, Header, Input, InputContainer, Title } from './styles';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import { ActionButton } from '../../components/ActionButton/styles';
+import SortOptionsPanel from '../../components/SortOptionsPanel';
+import IconButton from '../../components/IconButton';
 
 type Message = {
     ID: number;
@@ -25,6 +28,20 @@ const Home: React.FC = () => {
 
     return (
         <Container>
+            <Header>
+                <Title>Files HUB</Title>
+                <ActionsContainer>
+                    <ActionButton bgColor="#6C7384" header>
+                        Search
+                    </ActionButton>
+                    <ActionButton bgColor="#44AB80" header>
+                        Add
+                    </ActionButton>
+                </ActionsContainer>
+            </Header>
+            <SortOptionsPanel>
+
+            </SortOptionsPanel>
             <CardsContainer>
                 { messages?.map(message => (
                     <MessageCard key={message.ID} text={message.TEXT_MESSAGE} />
@@ -46,19 +63,17 @@ const Home: React.FC = () => {
                 <MessageCard text="TESTE" />
             </CardsContainer>
             <InputContainer>
-                <FiPaperclip color="#DDD" size={20} />
                 <Input
-                    placeholder="Digite uma mensagem..."
+                    placeholder="Quick message..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
 
                 {message.length > 0 &&
-                    <FiX color="#DDD" size={16} />
+                    <IconButton Icon={FiX} size={16} simple onClick={() => setMessage("")}/>
                 }
 
-                <FiSend color="#DDD" size={20} />
-
+                <IconButton Icon={FiSend} simple size={20} />
             </InputContainer>
         </Container>
     );
